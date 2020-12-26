@@ -1,0 +1,12 @@
+GET http://localhost:5000/posts/
+
+POST http://localhost:5000/posts/ HTTP/1.1
+'content-type': 'application/json'
+
+{
+    "message": "testing api",
+    "creator": "Admin",
+    "tags": ["tests", "testing", "apiTesting"],
+    "selectedFile": "Random_path",
+    "likeCount": 2,
+}
