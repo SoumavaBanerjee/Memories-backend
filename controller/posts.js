@@ -1,3 +1,4 @@
+import Mongoose from "mongoose";
 import postMessage from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
@@ -21,4 +22,18 @@ export const createPosts = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
+};
+
+export const updatePosts = async (req, res) => {
+  const { id: _id } = req.params;
+  const post = req.body;
+
+  if (!Mongoose.Types.isValidObjectId(_id))
+    res.status(404).send("No post with that id found");
+
+  const updatedPost = await postMessage.findByIdAndUpdate(_id, post, {
+    new: true,
+  });
+
+  res.json(updatedPost);
 };
