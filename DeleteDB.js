@@ -26,7 +26,7 @@ const deleteData = async () => {
     process.exit();
   } catch (error) {
     console.log(`ERROR in deleting: ${error}`);
-    process.exit(1);
+    process.exit(-1);
   }
 };
 

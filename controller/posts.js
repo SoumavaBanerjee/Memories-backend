@@ -3,7 +3,6 @@ import postMessage from "../models/postMessage.js";
 
 export const getPosts = async (req, res) => {
   try {
-    console.log("Hitting post server");
     const postMessages = await postMessage.find();
     res.status(200).json(postMessages);
   } catch (error) {
@@ -18,7 +17,6 @@ export const createPosts = async (req, res) => {
   try {
     await newPost.save();
     res.status(201).json(post);
-    console.log("hitting saved posts function");
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
@@ -40,4 +38,17 @@ export const updatePost = async (req, res) => {
   );
 
   res.json(updatedPost);
+};
+
+export const deletePost = async (req, res) => {
+  const { id: _id } = req.params;
+  if (!Mongoose.Types.ObjectId.isValid(_id))
+    res.status(404).send("No post with the given id found");
+
+  try {
+    await postMessage.findByIdAndDelete(_id);
+    res.status(200).json({ message: "post deletion successful" });
+  } catch (error) {
+    res.status(409).send("failed to delete post");
+  }
 };

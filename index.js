@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import morgan from "morgan";
 
 import postRoutes from "./routes/posts.js";
 
@@ -19,6 +20,7 @@ const PORT = process.env.PORT || 5000;
 // Middlewares
 app.use(bodyParser.json({ limit: "30mb", extended: "true" }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: "true" }));
+app.use(morgan("dev"));
 app.use(cors());
 
 // Routes
