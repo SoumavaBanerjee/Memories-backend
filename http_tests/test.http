@@ -6,7 +6,7 @@ GET http://localhost:5000/posts/
 
 
 
-
+####
 
 
 POST http://localhost:5000/posts/ HTTP/1.1
@@ -19,3 +19,7 @@ POST http://localhost:5000/posts/ HTTP/1.1
     "selectedFile": "Random_path",
     "likeCount": 2,
 }
+
+####
+
+PATCH http://localhost:5000/posts/6012c33fe294545802bbebbe/likedPost 
