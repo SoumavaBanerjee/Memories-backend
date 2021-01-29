@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 
 import postRoutes from "./routes/posts.js";
-
+import homeRoute from "./routes/home.js";
 // Top level express application
 const app = express();
 
@@ -26,6 +26,7 @@ app.use(cors());
 // Routes
 
 app.use("/posts", postRoutes);
+app.use("/", homeRoute);
 
 // Connection
 mongoose
